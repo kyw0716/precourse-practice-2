@@ -3,6 +3,7 @@ class InputView {
   #racingCountInput;
   #carNamesForm;
   #racingCountForm;
+  #racingCountFormHeader;
 
   constructor(setCarNames, setRacingCount) {
     this.#carNamesInput = document.querySelector("#car-names-input");
@@ -11,6 +12,7 @@ class InputView {
     this.#racingCountForm = document.querySelector(
       "#racing-count-input"
     ).parentNode;
+    this.#racingCountFormHeader = document.querySelector("h4");
 
     this.#carNamesForm.addEventListener("submit", (event) => {
       event.preventDefault();
@@ -21,6 +23,8 @@ class InputView {
       event.preventDefault();
       setRacingCount(event.target[0].value);
     });
+
+    this.hideRacingCountForm();
   }
 
   clearCarNamesInput() {
@@ -29,6 +33,16 @@ class InputView {
 
   clearRacingCountInput() {
     this.#racingCountInput.value = "";
+  }
+
+  viewRacingCountForm() {
+    this.#racingCountForm.style.display = "block";
+    this.#racingCountFormHeader.style.display = "block";
+  }
+
+  hideRacingCountForm() {
+    this.#racingCountForm.style.display = "none";
+    this.#racingCountFormHeader.style.display = "none";
   }
 }
 

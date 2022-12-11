@@ -15,6 +15,7 @@ class RacingGameController {
   inputCarNamesCallback(input) {
     try {
       this.#cars = new Cars(input);
+      this.#inputView.viewRacingCountForm();
     } catch (error) {
       alert(error);
       this.#inputView.clearCarNamesInput();
@@ -23,7 +24,6 @@ class RacingGameController {
 
   inputRacingCountCallback(input) {
     try {
-      if (this.#cars === undefined) throw new Error("자동차 이름이 없습니다.");
       this.#cars.setRacingCount(input);
       this.racingStart();
     } catch (error) {

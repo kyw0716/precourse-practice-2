@@ -1,3 +1,4 @@
+import { ErrorMsg, StaticValue } from "../static/Static.js";
 import Car from "./Car.js";
 
 class Cars {
@@ -11,17 +12,18 @@ class Cars {
   }
 
   validateCarNames(carNames) {
-    if (carNames.filter((v) => v.length > 5).length > 0)
-      throw new Error("글자 수가 5자 이상인 자동차 이름이 포함되어 있습니다.");
+    if (
+      carNames.filter((v) => v.length > StaticValue.CAR_NAME_LENGTH).length > 0
+    )
+      throw new Error(ErrorMsg.INVALID_CAR_NAMES_LENGTH_OUT_OF_RANGE);
 
     if (carNames.filter((v) => v.length === 0).length > 0)
-      throw new Error("글자 수가 0자인 자동차 이름이 포함되어 있습니다.");
+      throw new Error(ErrorMsg.INVALID_CAR_NAMES_EMPTY_INPUT);
   }
 
   validateRacingCount(racingCount) {
-    if (racingCount.length === 0) throw new Error("입력값이 없습니다.");
-    if (this.#allCars === undefined)
-      throw new Error("자동차의 이름이 없습니다.");
+    if (racingCount.length === 0)
+      throw new Error(ErrorMsg.INVALID_RACING_COUNT_EMPTY_INPUT);
   }
 
   setRacingCount(racingCount) {
@@ -42,9 +44,12 @@ class Cars {
 
   race(randomNumberGenerator) {
     for (let i = 0; i < this.#allCars.length; i++) {
-      const randomNumber = randomNumberGenerator(0, 9);
+      const randomNumber = randomNumberGenerator(
+        StaticValue.RANDOM_RANGE_START,
+        StaticValue.RANDOM_RANGE_END
+      );
 
-      if (randomNumber > 4) this.#allCars[i].move();
+      if (randomNumber > StaticValue.CAN_MOVE_COUNT) this.#allCars[i].move();
     }
   }
 

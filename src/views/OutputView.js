@@ -1,3 +1,5 @@
+import { ViewString } from "../static/Static";
+
 class OutputView {
   #container;
 
@@ -21,7 +23,7 @@ class OutputView {
   printResultHeader() {
     const H4 = document.createElement("h4");
 
-    H4.innerHTML = `📄 실행 결과`;
+    H4.innerHTML = ViewString.RESULT_HEADER;
 
     this.#container.appendChild(H4);
   }
