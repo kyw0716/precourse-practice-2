@@ -17,6 +17,24 @@ class OutputView {
 
     this.#container.appendChild(div);
   }
+
+  printResultHeader() {
+    const H4 = document.createElement("h4");
+
+    H4.innerHTML = `📄 실행 결과`;
+
+    this.#container.appendChild(H4);
+  }
+
+  printWinner(winner) {
+    const H4 = document.createElement("h4");
+
+    H4.innerHTML = `최종 우승자: ${winner
+      .map((w) => `<span id="racing-winners">${w}</span>`)
+      .join(", ")}`;
+
+    this.#container.appendChild(H4);
+  }
 }
 
 export default OutputView;

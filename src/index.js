@@ -33,10 +33,14 @@ class RacingGameController {
   }
 
   racingStart() {
+    this.#outputView.printResultHeader();
+
     for (let i = 0; i < this.#cars.getRacingCount(); i++) {
       this.#cars.race(MissionUtils.Random.pickNumberInRange);
       this.#outputView.printCarMoveState(this.#cars.getCarMoveState());
     }
+
+    this.#outputView.printWinner(this.#cars.getWinner());
   }
 }
 

@@ -10,7 +10,7 @@ class Car {
     this.#moveDistance++;
   }
 
-  getMoveDistance() {
+  getMoveDistanceForPrint() {
     let move = "";
 
     for (let i = 0; i < this.#moveDistance; i++) {
@@ -18,6 +18,10 @@ class Car {
     }
 
     return move;
+  }
+
+  getMoveDistanceForCalculate() {
+    return this.#moveDistance;
   }
 
   getName() {

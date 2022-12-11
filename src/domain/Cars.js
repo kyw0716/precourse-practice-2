@@ -34,7 +34,10 @@ class Cars {
   }
 
   getCarMoveState() {
-    return this.#allCars.map((car) => [car.getName(), car.getMoveDistance()]);
+    return this.#allCars.map((car) => [
+      car.getName(),
+      car.getMoveDistanceForPrint(),
+    ]);
   }
 
   race(randomNumberGenerator) {
@@ -43,6 +46,31 @@ class Cars {
 
       if (randomNumber > 4) this.#allCars[i].move();
     }
+  }
+
+  getMaxDistance() {
+    let maxDistance = 0;
+
+    for (let i = 0; i < this.#allCars.length; i++) {
+      const moveDistance = this.#allCars[i].getMoveDistanceForCalculate();
+      if (maxDistance < moveDistance) maxDistance = moveDistance;
+    }
+
+    return maxDistance;
+  }
+
+  getWinner() {
+    const maxDistance = this.getMaxDistance();
+    const winner = [];
+
+    for (let i = 0; i < this.#allCars.length; i++) {
+      const moveDistance = this.#allCars[i].getMoveDistanceForCalculate();
+      const carName = this.#allCars[i].getName();
+
+      if (moveDistance === maxDistance) winner.push(carName);
+    }
+
+    return winner.sort();
   }
 }
 
