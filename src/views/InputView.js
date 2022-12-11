@@ -19,7 +19,7 @@ class InputView {
 
     this.#racingCountForm.addEventListener("submit", (event) => {
       event.preventDefault();
-      console.log(this.racingCountInput.value);
+      setRacingCount(event.target[0].value);
     });
   }
 
