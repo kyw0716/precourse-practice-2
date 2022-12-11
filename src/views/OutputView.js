@@ -1,4 +1,4 @@
-import { ViewString } from "../static/Static";
+import { ViewString } from "../static/Static.js";
 
 class OutputView {
   #container;
